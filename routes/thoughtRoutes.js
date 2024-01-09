@@ -1,10 +1,22 @@
 // routes/thoughtRoutes.js
 const express = require('express');
-const { getAllThoughts } = require('../controllers/thoughtController');
+const {
+  getAllThoughts,
+  createThought,
+  updateThought,
+  deleteThought
+} = require('../controllers/thoughtController');
+
 const router = express.Router();
 
-router.route('/').get(getAllThoughts);
+// Route to get all thoughts
+router.route('/')
+  .get(getAllThoughts)
+  .post(createThought); // Add route to create a new thought
 
-// Add more routes for POST, PUT, DELETE
+// Route to update and delete a thought by its ID
+router.route('/:thoughtId')
+  .put(updateThought)
+  .delete(deleteThought);
 
 module.exports = router;
